@@ -1,8 +1,9 @@
 <script lang="ts">
+  import PlayHollow from "../icons/PlayHollow.svelte";
+  import Shuffle from "../icons/Shuffle.svelte";
   import { playSongs } from "../stores/player";
 
   export let songs: Song[];
-
 
   const shuffle = () => {
     const shuffledSongs = [...songs];
@@ -40,6 +41,6 @@
 </style>
 
 <div>
-  <button class="play" on:click={() => playSongs(songs)}>Play</button>
-  <button class="shuffle" on:click={shuffle}>Shuffle</button>
+  <button class="play" on:click={() => playSongs(songs)}><PlayHollow /></button>
+  <button class="shuffle" on:click={shuffle}><Shuffle /></button>
 </div>

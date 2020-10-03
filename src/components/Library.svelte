@@ -31,6 +31,7 @@
 
   button {
     background: none;
+    font-size: 0.9em;
   }
 
   .active {

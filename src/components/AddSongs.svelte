@@ -2,6 +2,7 @@
   import loadAudioFile from "../services/loadAudioFile";
   import { storeSongs } from "../services/database";
   import { songs } from "../stores/songs";
+  import AddFile from "../icons/AddFile.svelte";
 
   const handleInput = async (e) => {
     const { files: rawFiles } = e.currentTarget;
@@ -38,10 +39,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #efefef;
+    background-color: none;
   }
 </style>
 
 <label for="song-input">
-  Add Songs <input id="song-input" type="file" multiple accept="audio/mp3" on:change={handleInput} />
+  <AddFile />
+  <input
+    id="song-input"
+    type="file"
+    multiple
+    accept="audio/mp3"
+    on:change={handleInput}
+  />
 </label>

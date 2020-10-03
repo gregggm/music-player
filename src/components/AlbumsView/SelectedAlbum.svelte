@@ -9,6 +9,7 @@
 
   export let album: Album;
   export let close: () => void;
+  console.log(album)
 </script>
 
 <style>
@@ -20,6 +21,7 @@
     height: calc(100vh - 110px);
     width: 100%;
     overflow-y: scroll;
+    padding-bottom: 70px;
   }
 
   .header {
