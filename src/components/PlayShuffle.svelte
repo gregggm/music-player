@@ -31,6 +31,11 @@
   button {
     width: 42%;
     border-radius: 10px;
+    transition: background-color 0.2s;
+  }
+
+  button:active {
+    background-color: darkgray;
   }
 </style>
 
