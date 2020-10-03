@@ -61,9 +61,13 @@
       bind:this={inputElement}
       on:input={(e) => setText(e.target.value)}
       value={$search.text}
+      placeholder="Search library"
     />
     <button
       on:click={() => {
+        if (!$search.text) {
+          return setActive(false);
+        }
         setText('');
         inputElement.focus();
       }}

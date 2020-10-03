@@ -25,6 +25,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     z-index: 1;
+    backdrop-filter: saturate(180%) blur(20px);
+    background-color: rgba(239,239,239,0.8);
+  }
+
+  button {
+    background: none;
   }
 
   .active {
