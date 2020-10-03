@@ -77,8 +77,8 @@
     width: 100%;
     height: 70px;
     bottom: 60px;
-    backdrop-filter: saturate(180%) blur(20px);
-    background-color: rgba(211,211,211,0.7);
+    backdrop-filter: saturate(300%) blur(50px);
+    background-color: rgba(211, 211, 211, 0.7);
   }
 
   .art {
