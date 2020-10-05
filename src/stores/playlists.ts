@@ -38,3 +38,10 @@ export const updatePlaylist = (playlist: Playlist) => {
   }
   playlists.update((prevState) => ({ ...prevState, [playlist.id]: playlist }));
 };
+
+export const deletePlaylist = (playlist: Playlist) => {
+  playlists.update((prevState) => {
+    delete prevState[playlist.id];
+    return prevState;
+  });
+};

@@ -8,8 +8,7 @@
   import SongItem from "../SongsView/Song.svelte";
   import { updatePlaylist } from "../../stores/playlists";
   import Tick from "../../icons/Tick.svelte";
-  import Add from "../../icons/Add.svelte";
-  import Delete from "../../icons/Delete.svelte";
+  import EditOptions from "./EditOptions.svelte";
 
   export let playlist: Playlist;
   export let close: () => void;
@@ -20,17 +19,21 @@
     editMode = !editMode;
   };
 
-  const onTitleFocus = (
-    e: FocusEvent & { target: EventTarget & HTMLInputElement }
+  const onTitleChange = (
+    e: Event & { currentTarget: EventTarget & HTMLInputElement }
   ) => {
-    if (e.target.value === "Untitled playlist") {
-      e.target.value = "";
-    }
+    const target = e.target as HTMLInputElement;
+    playlist = { ...playlist, title: target.value };
+    updatePlaylist(playlist);
   };
 
-  const updateTitle = (title: string) => {
-    playlist = { ...playlist, title };
-    updatePlaylist(playlist);
+  const onTitleFocus = (
+    e: FocusEvent & { currentTarget: EventTarget & HTMLInputElement }
+  ) => {
+    const target = e.target as HTMLInputElement;
+    if (target.value === "Untitled playlist") {
+      target.value = "";
+    }
   };
 </script>
 
@@ -115,7 +118,7 @@
           type="text"
           class="edit-title"
           value={playlist.title}
-          on:change={(e) => updateTitle(e.target.value)}
+          on:change={onTitleChange}
           on:focus={onTitleFocus}
         />
       {:else}
@@ -132,8 +135,7 @@
   </div>
   <div class="options">
     {#if editMode}
-      <Add />
-      <Delete />
+      <EditOptions {playlist} {close} />
     {:else}
       <PlayShuffle songs={playlist.songs} />
     {/if}
