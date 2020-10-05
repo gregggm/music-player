@@ -29,7 +29,7 @@
     justify-content: left;
     align-items: center;
     height: 70px;
-    background: darkgrey;
+    background: #dddddd;
   }
 
   .back-button {
@@ -47,7 +47,7 @@
   }
 
   .title {
-    font-size: 1.3em;
+    font-size: 1.5em;
   }
 
   .art {
@@ -57,6 +57,7 @@
     margin-right: 10px;
     background: grey;
     border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   }
 </style>
 

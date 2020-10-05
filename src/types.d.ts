@@ -13,6 +13,16 @@ type Album = {
   songs: Song[];
 };
 
+type Playlist = {
+  id: string;
+  title: string;
+  songs: Song[];
+};
+
+type Playlists = {
+  [id: string]: Playlist;
+};
+
 type Player = {
   current: Song | null;
   history: Song[];

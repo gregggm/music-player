@@ -77,8 +77,19 @@
     width: 100%;
     height: 70px;
     bottom: 60px;
-    backdrop-filter: saturate(300%) blur(50px);
+    backdrop-filter: saturate(200%) blur(50px);
     background-color: rgba(240, 240, 240, 0.7);
+  }
+
+  .expanded {
+    background-color: transparent;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 1)
+    );
   }
 
   .art {
@@ -104,9 +115,10 @@
     max-width: calc(100vh / 2);
   }
   .title {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
   .artist {
+    font-size: 1.2em;
     color: grey;
   }
 
@@ -125,7 +137,7 @@
   }
 </style>
 
-<div class="now-playing" on:click={open} style="height: {$height}px">
+<div class="now-playing" class:expanded on:click={open} style="height: {$height}px">
   <div
     class="song-info"
     style="left: {$songInfoAnimation.px}px; top: {$songInfoAnimation.py}px"
