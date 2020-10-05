@@ -79,6 +79,7 @@
       {song}
       onClick={() => {
         playSongs([song]);
+        setText('');
         setActive(false);
       }}
     />

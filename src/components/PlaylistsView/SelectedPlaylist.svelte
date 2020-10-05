@@ -95,6 +95,13 @@
     padding: 0;
     height: 40px;
     width: 100%;
+    animation: underline 1.5s linear infinite;
+  }
+
+  @keyframes underline {
+    50% {
+      text-decoration: underline;
+    }
   }
 
   .options {
