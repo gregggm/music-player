@@ -1,23 +1,7 @@
 import { writable } from "svelte/store";
 import { v4 as uuid } from "uuid";
 
-const tempPlaylist: Playlists = {
-  temp: {
-    id: "temp",
-    title: "Test",
-    songs: [
-      {
-        id: "1",
-        title: "Test song",
-        album: "jhah",
-        artist: "sdg",
-        trackNumber: 1,
-      },
-    ],
-  },
-};
-
-export const playlists = writable<Playlists>(tempPlaylist);
+export const playlists = writable<Playlists>({});
 
 export const createNewPlaylist: () => Playlist = () => {
   const id = uuid();
