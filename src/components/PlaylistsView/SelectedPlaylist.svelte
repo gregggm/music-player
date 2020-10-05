@@ -148,7 +148,7 @@
     {/if}
   </div>
   <PlayableList songs={playlist.songs} let:onClick={playSong}>
-    {#each playlist.songs as song (song.id)}
+    {#each playlist.songs as song}
       <SongItem {song} onClick={() => playSong(song.id)} />
     {/each}
   </PlayableList>

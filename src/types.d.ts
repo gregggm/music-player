@@ -33,4 +33,5 @@ type Player = {
 type Search = {
   active: boolean;
   text: string;
+  addToPlaylist: boolean;
 };

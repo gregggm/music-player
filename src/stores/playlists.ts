@@ -1,7 +1,20 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 import { v4 as uuid } from "uuid";
 
 export const playlists = writable<Playlists>({});
+export const selectedPlaylistId = writable<string | null>(null);
+export const selectedPlaylist = derived([playlists, selectedPlaylistId], ([$playlists, $selectedPlaylistId]) => {
+  if (!$selectedPlaylistId) return null;
+  return $playlists[$selectedPlaylistId] || null;
+});
+
+export const selectPlaylist = (playlist: Playlist | null) => {
+  if (playlist) {
+    selectedPlaylistId.set(playlist.id);
+  } else {
+    selectedPlaylistId.set(null);
+  }
+}
 
 export const createNewPlaylist: () => Playlist = () => {
   const id = uuid();

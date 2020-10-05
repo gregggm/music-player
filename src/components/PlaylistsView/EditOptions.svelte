@@ -1,7 +1,11 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
   import Add from "../../icons/Add.svelte";
   import Delete from "../../icons/Delete.svelte";
   import { deletePlaylist } from "../../stores/playlists";
+  import { setAddToPlaylist } from "../../stores/search";
+
+  onDestroy(() => setAddToPlaylist(false));
 
   export let playlist: Playlist;
   export let close: () => void;
@@ -11,7 +15,7 @@
     close();
   };
   const onAddSongsClick = () => {
-    // open search?
+    setAddToPlaylist(true);
   };
 </script>
 
@@ -36,7 +40,7 @@
   }
 
   .delete-playlist {
-    color: #ff4c40
+    color: #ff4c40;
   }
 </style>
 

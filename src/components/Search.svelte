@@ -2,9 +2,10 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { playSongs } from "../stores/player";
+  import { selectedPlaylist, updatePlaylist } from "../stores/playlists";
   import { search, setActive, setText } from "../stores/search";
   import { songs } from "../stores/songs";
-  import Song from "./SongsView/Song.svelte";
+  import SongItem from "./SongsView/Song.svelte";
 
   let inputElement: HTMLInputElement;
 
@@ -19,6 +20,17 @@
   onMount(() => {
     inputElement.focus();
   });
+
+  const onSongClick = (song: Song) => {
+    if ($search.addToPlaylist && $selectedPlaylist) {
+      $selectedPlaylist?.songs.push(song);
+      updatePlaylist($selectedPlaylist!);
+    } else {
+      playSongs([song]);
+    }
+    setText("");
+    setActive(false);
+  };
 </script>
 
 <style>
@@ -75,13 +87,6 @@
     >Clear</button>
   </div>
   {#each filteredSongs as song}
-    <Song
-      {song}
-      onClick={() => {
-        playSongs([song]);
-        setText('');
-        setActive(false);
-      }}
-    />
+    <SongItem {song} onClick={() => onSongClick(song)} />
   {/each}
 </div>

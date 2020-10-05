@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { playlists, createNewPlaylist } from "../../stores/playlists";
+  import {
+    playlists,
+    selectedPlaylist,
+    createNewPlaylist,
+    selectPlaylist,
+  } from "../../stores/playlists";
   import SelectedPlaylist from "./SelectedPlaylist.svelte";
 
-  let selectedPlaylist: Playlist | null = null;
-
+  $: playlist = $selectedPlaylist;
   $: playlistsArray = Object.values($playlists);
 
-  const selectPlaylist = (playlist: Playlist) => {
-    selectedPlaylist = playlist;
-  };
-
   const closePlaylist = () => {
-    selectedPlaylist = null;
+    selectPlaylist(null);
   };
 
   const onNewPlaylistClick = () => {
@@ -57,7 +57,7 @@
       {playlist.title}
     </div>
   {/each}
-  {#if selectedPlaylist}
-    <SelectedPlaylist playlist={selectedPlaylist} close={closePlaylist} />
+  {#if playlist}
+    <SelectedPlaylist {playlist} close={closePlaylist} />
   {/if}
 </div>
