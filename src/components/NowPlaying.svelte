@@ -52,7 +52,7 @@
       maxWidth > window.innerWidth * 0.9 ? window.innerWidth * 0.9 : maxWidth;
     const leftMargin = window.innerWidth / 2 - width / 2;
 
-    height.set(window.innerHeight - 70);
+    height.set(window.innerHeight - 60);
     songInfoAnimation.set({
       py: width + 70,
       px: window.innerWidth / 2 - width / 2,
