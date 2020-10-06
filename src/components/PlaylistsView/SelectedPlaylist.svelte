@@ -171,7 +171,7 @@
         {#if editMode}
           <button
             class="delete-song"
-            on:click={() => {
+            on:click|stopPropagation={() => {
               const index = playlist.songs.indexOf(song);
               playlist.songs.splice(index, 1);
               updatePlaylist(playlist);
