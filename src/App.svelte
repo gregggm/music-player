@@ -54,6 +54,8 @@
       }, {});
       playlistsStore.set(formattedPlaylists);
 
+      console.log("Loaded Songs: ", formattedSongs);
+      console.log("Loaded Playlists: ", Object.values(formattedPlaylists));
       loadingLibrary.set(false);
     });
 </script>
