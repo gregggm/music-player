@@ -4,9 +4,11 @@
   import NowPlaying from "./components/NowPlaying.svelte";
   import Audio from "./components/Audio.svelte";
   import Search from "./components/Search.svelte";
-  import { loadLibrary, storeSongs } from "./services/database";
+  import Welcome from "./components/Welcome.svelte";
   import { songs } from "./stores/songs";
   import { search } from "./stores/search";
+  import { loadingLibrary } from "./stores/loadingLibrary";
+  import { loadLibrary, storeSongs } from "./services/database";
   import loadAudioFile from "./services/loadAudioFile";
 
   const addExampleSong = (data) => {
@@ -39,6 +41,7 @@
       );
 
       songs.set(formattedSongs);
+      loadingLibrary.set(false);
     });
 </script>
 
@@ -78,6 +81,7 @@
 </style>
 
 <div class="app-container">
+  <Welcome />
   {#if $search.active}
     <Search />
   {/if}

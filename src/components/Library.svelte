@@ -3,7 +3,6 @@
   import PlaylistsView from "./PlaylistsView/PlaylistsView.svelte";
   import SongsView from "./SongsView/SongsView.svelte";
   import ViewContainer from "./ViewContainer.svelte";
-  import { songs } from "../stores/songs";
 
   type ActiveView = "songs" | "albums" | "playlists";
 
@@ -43,12 +42,6 @@
     display: flex;
     flex-direction: column;
   }
-
-  h1 {
-    width: 100%;
-    text-align: center;
-    margin-top: 100px;
-  }
 </style>
 
 <div class="library-container">
@@ -67,9 +60,6 @@
     >Playlists</button>
   </div>
   <div class="library">
-    {#if $songs.length === 0}
-      <h1>Loading library...</h1>
-    {:else}
       <ViewContainer active={activeView === 'songs'}>
         <SongsView />
       </ViewContainer>
@@ -79,6 +69,5 @@
       <ViewContainer active={activeView === 'playlists'}>
         <PlaylistsView />
       </ViewContainer>
-    {/if}
   </div>
 </div>
