@@ -1,8 +1,8 @@
 <script>
   import AddSongs from "./AddSongs.svelte";
-  import { setActive as setSeachActive } from "../stores/search";
-import Home from "../icons/Home.svelte";
-import Search from "../icons/Search.svelte";
+  import { setActive as setSeachActive, setText } from "../stores/search";
+  import Home from "../icons/Home.svelte";
+  import Search from "../icons/Search.svelte";
 </script>
 
 <style>
@@ -19,6 +19,11 @@ import Search from "../icons/Search.svelte";
 
 <div>
   <button on:click={() => setSeachActive(false)}><Home /></button>
-  <button on:click={() => setSeachActive(true)}><Search /></button>
+  <button
+    on:click={() => {
+      setText('');
+      setSeachActive(true);
+    }}
+  ><Search /></button>
   <AddSongs />
 </div>
