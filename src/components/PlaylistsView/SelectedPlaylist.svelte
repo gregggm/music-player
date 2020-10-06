@@ -10,13 +10,21 @@
   import Tick from "../../icons/Tick.svelte";
   import EditOptions from "./EditOptions.svelte";
   import Delete from "../../icons/Delete.svelte";
+  import { tick } from "svelte";
 
   export let playlist: Playlist;
   export let close: () => void;
-  let editMode = false;
 
-  const onEditButtonClick = () => {
+  let editMode = false;
+  let titleInputElement: HTMLInputElement;
+
+  const onEditButtonClick = async () => {
     editMode = !editMode;
+
+    await tick();
+    if (titleInputElement) {
+      titleInputElement.focus();
+    }
   };
 
   const onTitleChange = (
@@ -136,6 +144,7 @@
           value={playlist.title}
           on:change={onTitleChange}
           on:focus={onTitleFocus}
+          bind:this={titleInputElement}
         />
       {:else}
         <div class="title no-overflow-text">{playlist.title}</div>
