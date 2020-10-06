@@ -9,11 +9,11 @@
   import { updatePlaylist } from "../../stores/playlists";
   import Tick from "../../icons/Tick.svelte";
   import EditOptions from "./EditOptions.svelte";
+  import Delete from "../../icons/Delete.svelte";
 
   export let playlist: Playlist;
   export let close: () => void;
   let editMode = false;
-  console.log(playlist);
 
   const onEditButtonClick = () => {
     editMode = !editMode;
@@ -108,6 +108,15 @@
     margin-top: 5px;
     height: 60px;
   }
+
+  .delete-song {
+    position: absolute;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    color: #ff4c40;
+    background: none;
+  }
 </style>
 
 <div
@@ -149,7 +158,18 @@
   </div>
   <PlayableList songs={playlist.songs} let:onClick={playSong}>
     {#each playlist.songs as song}
-      <SongItem {song} onClick={() => playSong(song.id)} />
+      <SongItem {song} onClick={() => playSong(song.id)}>
+        {#if editMode}
+          <button
+            class="delete-song"
+            on:click={() => {
+              const index = playlist.songs.indexOf(song);
+              playlist.songs.splice(index, 1);
+              updatePlaylist(playlist);
+            }}
+          ><Delete /></button>
+        {/if}
+      </SongItem>
     {/each}
   </PlayableList>
 </div>

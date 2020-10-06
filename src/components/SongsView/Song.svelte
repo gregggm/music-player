@@ -44,4 +44,5 @@
     <div class="title no-overflow-text">{song.title}</div>
     <div class="album no-overflow-text">{song.artist}</div>
   </div>
+  <slot />
 </div>
