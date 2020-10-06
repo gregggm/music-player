@@ -14,8 +14,8 @@
 
   onDestroy(() => selectPlaylist(null));
 
-  const onNewPlaylistClick = () => {
-    const playlist = createNewPlaylist();
+  const onNewPlaylistClick = async () => {
+    const playlist = await createNewPlaylist();
     selectPlaylist(playlist);
   };
 </script>

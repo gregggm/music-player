@@ -5,7 +5,8 @@
   import Audio from "./components/Audio.svelte";
   import Search from "./components/Search.svelte";
   import Welcome from "./components/Welcome.svelte";
-  import { songs } from "./stores/songs";
+  import { songs as songsStore } from "./stores/songs";
+  import { playlists as playlistsStore } from "./stores/playlists";
   import { search } from "./stores/search";
   import { loadingLibrary } from "./stores/loadingLibrary";
   import { loadLibrary, storeSongs } from "./services/database";
@@ -30,7 +31,8 @@
   loadLibrary()
     .then(addExampleSong)
     .then((data) => {
-      const formattedSongs = data.map(
+      const songs = data.filter((x) => x.type === "song");
+      const formattedSongs = songs.map(
         ({ _id, title, album, artist, trackNumber }) => ({
           id: _id,
           title,
@@ -39,8 +41,19 @@
           trackNumber,
         })
       );
+      songsStore.set(formattedSongs);
 
-      songs.set(formattedSongs);
+      const playlists = data.filter((x) => x.type === "playlist");
+      const formattedPlaylists = playlists.reduce((accumulator, playlist) => {
+        accumulator[playlist._id] = {
+          id: playlist._id,
+          title: playlist.title,
+          songs: playlist.songs,
+        };
+        return accumulator;
+      }, {});
+      playlistsStore.set(formattedPlaylists);
+
       loadingLibrary.set(false);
     });
 </script>

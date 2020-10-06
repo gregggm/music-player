@@ -7,6 +7,7 @@ export const storeSongs = (songs) => {
   const formattedSongs = songs.map(
     ({ id, album, artist, title, trackNumber, audio, art }) => {
       const doc = {
+        type: "song",
         _id: id,
         album,
         artist,
@@ -31,6 +32,36 @@ export const storeSongs = (songs) => {
 
   return db.bulkDocs(formattedSongs);
 };
+
+export const storePlaylist = (playlist) =>
+  db
+    .put({
+      type: "playlist",
+      _id: playlist.id,
+      title: playlist.title,
+      songs: playlist.songs,
+    })
+    .catch(console.error);
+
+export const updatePlaylist = (playlist) =>
+  db
+    .get(playlist.id)
+    .then((doc) => {
+      db.put({
+        type: "playlist",
+        _rev: doc._rev,
+        _id: playlist.id,
+        title: playlist.title,
+        songs: playlist.songs,
+      });
+    })
+    .catch(console.error);
+
+export const deletePlaylist = (playlist) =>
+  db
+    .get(playlist.id)
+    .then((doc) => db.remove(doc))
+    .catch(console.error);
 
 export const loadAudio = (id) => {
   return db.getAttachment(id, "audio");
