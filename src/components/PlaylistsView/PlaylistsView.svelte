@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onDestroy } from "svelte";
+
   import {
     playlists,
     selectedPlaylist,
@@ -10,9 +12,7 @@
   $: playlist = $selectedPlaylist;
   $: playlistsArray = Object.values($playlists);
 
-  const closePlaylist = () => {
-    selectPlaylist(null);
-  };
+  onDestroy(() => selectPlaylist(null));
 
   const onNewPlaylistClick = () => {
     const playlist = createNewPlaylist();
@@ -58,6 +58,6 @@
     </div>
   {/each}
   {#if playlist}
-    <SelectedPlaylist {playlist} close={closePlaylist} />
+    <SelectedPlaylist {playlist} close={() => selectPlaylist(null)} />
   {/if}
 </div>
