@@ -1,8 +1,9 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
-    "strict": false,
-    "typeRoots": ["./src/types.d.ts"]
+    "strict": true,
+    "typeRoots": ["./src/types.d.ts"],
+    "allowJs": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
