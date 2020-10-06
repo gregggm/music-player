@@ -84,9 +84,13 @@
     background-color: white;
   }
 
-  @supports (backdrop-filter: saturate(200%) blur(50px)) {
+  @supports (
+    (backdrop-filter: saturate(200%) blur(50px)) or
+      (-webkit-backdrop-filter: saturate(200%) blur(50px))
+  ) {
     .now-playing {
       backdrop-filter: saturate(200%) blur(50px);
+      -webkit-backdrop-filter: saturate(200%) blur(50px);
       background-color: rgba(240, 240, 240, 0.7);
     }
 
