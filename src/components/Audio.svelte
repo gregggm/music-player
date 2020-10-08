@@ -3,16 +3,13 @@
   import { loadAudio } from "../services/database";
 
   let audioElement;
-
-  $: if (audioElement) {
-    if ($player.isPlaying) {
-      audioElement.play();
-    } else {
-      audioElement.pause();
-    }
-  }
-
   let playingSongId;
+
+  $: if ($player.isPlaying) {
+    audioElement?.play();
+  } else {
+    audioElement?.pause();
+  }
 
   $: if (playingSongId !== $player.current?.id) {
     playingSongId = $player.current?.id;

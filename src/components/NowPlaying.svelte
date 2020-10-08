@@ -129,11 +129,7 @@
     max-width: calc(100vh / 2);
   }
   .title {
-    font-size: 1.4em;
-  }
-  .artist {
-    font-size: 1.2em;
-    color: grey;
+    font-size: 1.5em;
   }
 
   .media-control {
