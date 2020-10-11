@@ -31,7 +31,7 @@
     font-size: 1.2em;
   }
 
-  .album {
+  .artist {
     color: grey;
   }
 </style>
@@ -42,7 +42,7 @@
   </div>
   <div class="info">
     <div class="title no-overflow-text">{song.title}</div>
-    <div class="album no-overflow-text">{song.artist}</div>
+    <div class="artist no-overflow-text">{song.artist}</div>
   </div>
   <slot />
 </div>
